@@ -4,7 +4,9 @@ ifeq ($(OS),Windows_NT)
     COPY_CMD_DIST := xcopy /E /Y /I dist\* ..\docs\ ^
 	OS_NAME := Windows
 else
-    COPY_CMD_DIST := cp -r dist/* ../docs/ ^
+    REMOVE_DOCS := rm -rf ../docs/
+    COPY_CNAME := cp ../CNAME.template ../docs/CNAME
+    COPY_CMD_DIST := cp -r dist/* ../docs/
 	OS_NAME := $(shell uname)
 endif
 
